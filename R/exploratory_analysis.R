@@ -23,11 +23,12 @@ ky_covar <- dist_covar %>%
 ky_means <- dist_means %>%
   filter(stateabb == "KY")
 
+# join means and covariates
 ky_data <- ky_means %>%
   left_join(ky_covar, by = c( "leaname", "fips", "stateabb", "year"))
 
 
-# exploratory plot
+# exploratory plots ####
 ggplot(ky_covar, aes( x = year, y = aides/tottch, group = leaid))+
   geom_line()+
   facet_wrap(~cdcode)
